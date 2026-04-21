@@ -112,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AboutScreen(),
+                              builder: (context) => const AboutUsScreen(),
                             ),
                           );
                         },
@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const PrivacyScreen(),
+                              builder: (context) => const PrivacyPolicyScreen(),
                             ),
                           );
                         },

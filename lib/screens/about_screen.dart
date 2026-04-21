@@ -1,149 +1,115 @@
 import 'package:flutter/material.dart';
 import '../widgets/gradient_background.dart';
-class AboutScreen extends StatelessWidget {
-  const AboutScreen({Key? key}) : super(key: key);
+
+class AboutUsScreen extends StatelessWidget {
+  const AboutUsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      extendBodyBehindAppBar: true, 
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text("About Us", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'About Us',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white), 
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: GradientBackground(
-        child: SafeArea(
+        child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
                 Container(
-                  padding: const EdgeInsets.all(15),
+                  width: 130,
+                  height: 130,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.05),
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white10, width: 2),
-                  ),
-                  child: Image.asset(
-                    'assets/logos/logo_apk.png',
-                    width: 100,
-                    height: 100,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  "RATING APP",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 2.0),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  "Versi 1.0.0",
-                  style: TextStyle(fontSize: 14, color: Colors.white54),
-                ),
-                const SizedBox(height: 40),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.05), 
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.white10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Tentang Aplikasi",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        "Rating App adalah aplikasi purwarupa (prototype) yang dirancang untuk memberikan pengalaman terbaik dalam mencari, menemukan, dan merating film favorit Anda. Dibuat dengan antarmuka modern yang memanjakan mata layaknya bioskop di genggaman Anda.",
-                        style: TextStyle(fontSize: 15, color: Colors.white70, height: 1.5),
-                        textAlign: TextAlign.justify,
+                    border: Border.all(color: Colors.white24, width: 2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 20,
+                        spreadRadius: 5,
                       ),
                     ],
                   ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(65),
+                    child: Image.asset(
+                      'assets/logos/logo_apk.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
+
+                const Text(
+                  'RATING APP',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 2,
+                  ),
+                ),
+                const Text(
+                  'Versi 1.0.0',
+                  style: TextStyle(color: Colors.white54, fontSize: 14),
+                ),
+                const SizedBox(height: 40),
+
                 Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.05),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: Colors.white10),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: const Column(
                     children: [
-                      const Text(
-                        "Dikembangkan Oleh",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      Text(
+                        'Aplikasi Rating adalah platform modern untuk menemukan ulasan film terkini dengan antarmuka yang bersih dan interaktif yang dikembangkan oleh kelompok Tryhard.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 16,
+                          height: 1.5,
+                        ),
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 20),
+                      Divider(color: Colors.white10),
+                      SizedBox(height: 20),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const CircleAvatar(
-                            radius: 30,
-                            backgroundImage: NetworkImage('https://via.placeholder.com/150'),
-                          ),
-                          const SizedBox(width: 15),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text("Nama Kamu", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
-                                SizedBox(height: 5),
-                                Text("Flutter Developer", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w500)),
-                              ],
-                            ),
+                          Icon(Icons.code, color: Colors.blueAccent, size: 20),
+                          SizedBox(width: 10),
+                          Text(
+                            'By Tryhard Team',
+                            style: TextStyle(color: Colors.white54),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 50),
+
                 const Text(
-                  "Hubungi Kami",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white54),
+                  '© 2026 Tryhard Team',
+                  style: TextStyle(color: Colors.white38, fontSize: 12),
                 ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildSocialIcon(Icons.language, "Website"),
-                    const SizedBox(width: 20),
-                    _buildSocialIcon(Icons.email_outlined, "Email"),
-                    const SizedBox(width: 20),
-                    _buildSocialIcon(Icons.share, "Share"),
-                  ],
-                ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-  Widget _buildSocialIcon(IconData icon, String tooltip) {
-    return Tooltip(
-      message: tooltip,
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.05),
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.white10),
-        ),
-        child: Icon(icon, color: Colors.white, size: 28),
       ),
     );
   }

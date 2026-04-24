@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15.0),
                               image: DecorationImage(
-                                image: AssetImage(movie.imageUrl), // SUDAH BENAR
+                                image: AssetImage(movie.imageUrl),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -234,7 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         topLeft: Radius.circular(15),
                                         bottomLeft: Radius.circular(15),
                                       ),
-                                      // DIPERBAIKI: Menggunakan Image.asset
                                       child: Image.asset(
                                         movie.imageUrl,
                                         width: 100,
@@ -343,7 +342,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              // DIPERBAIKI: Typo AssetImages dihapus huruf 's' nya
                               image: AssetImage(movie.imageUrl), 
                               fit: BoxFit.cover,
                             ),

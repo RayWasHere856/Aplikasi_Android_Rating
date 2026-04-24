@@ -67,25 +67,21 @@ class PolicyScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildPoint(
-                            'KOMITMEN KELOMPOK TRYHARD',
-                            'Kami membangun Ratting App dengan standar enkripsi militer untuk memastikan setiap data ulasan dan identitas Anda tetap anonim dan aman.',
+                            'KELOMPOK TRYHARD',
+                            'Aplikasi ini di dirikan ooleh 5 orang yang berasal dari kelas TI-A pagi.',
                           ),
                           _buildPoint(
-                            'OTORISASI YOUTUBE',
-                            'Layanan cuplikan video didukung oleh YouTube API. Penggunaan fitur ini berarti Anda menyetujui kebijakan privasi Google terkait streaming data.',
+                            'MENGGUNAKAN CUPLIKAN YOUTUBE',
+                            'Cuplikan video diambil dari YT.',
                           ),
                           _buildPoint(
-                            'KEDAULATAN DATA',
-                            'Kelompok Tryhard tidak membagikan data kepada pihak ketiga. Informasi Anda digunakan secara eksklusif untuk personalisasi algoritma film Anda.',
-                          ),
-                          _buildPoint(
-                            'INTEGRITAS KOMUNITAS',
-                            'Anda bertanggung jawab atas setiap komentar yang dipublikasikan. Kami berhak menghapus konten yang melanggar norma komunitas.',
+                            'SOURCE CODE',
+                            'Source code tersedia pada GITHUB www.github.com/RayWasHere856',
                           ),
                           const SizedBox(height: 10),
                           const Center(
                             child: Text(
-                              'END OF DOCUMENT',
+                              'TIDAK BOLEH COPYRIGHT',
                               style: TextStyle(color: Colors.white24, fontSize: 10, letterSpacing: 2),
                             ),
                           ),
@@ -129,7 +125,7 @@ class PolicyScreen extends StatelessWidget {
                 
                 const SizedBox(height: 25),
                 const Text(
-                  'VERSION 1.0.0 // BY KELOMPOK TRYHARD',
+                  'VERSION 1.0.0 BY KELOMPOK TRYHARD',
                   style: TextStyle(color: Colors.white24, fontSize: 10, letterSpacing: 1),
                 ),
                 const SizedBox(height: 20),

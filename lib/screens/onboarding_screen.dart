@@ -35,7 +35,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     OnboardingData(
       title: "Rating & Review",
       description:
-          "Berikan penilaianmu dan tulis ulasan jujur untuk membantu komunitas menemukan tontonan terbaik.",
+          "Berikan penilaianmu dan tulis komentar jujur untuk membantu komunitas menemukan tontonan terbaik.",
       image: 'assets/logos/gambar-2.png',
     ),
     OnboardingData(

@@ -8,8 +8,7 @@ class Movie {
   final String releaseYear;
   final String director;
   final String actors;
-  final List<String> genres; // Menampung banyak genre sekaligus
-
+  final List<String> genres;
   Movie({
     required this.title,
     required this.description,
@@ -158,3 +157,4 @@ List<Movie> allMovies = [
     genres: ["Animasi", "Petualangan", "Action", "Komedi"],
   ),
 ];
+List<Movie> favoriteMovies = [];

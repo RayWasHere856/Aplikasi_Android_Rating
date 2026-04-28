@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'search_screen.dart';
+import 'favorite_screen.dart';
 import 'profile_screen.dart';
 
 class MainWrapper extends StatefulWidget {
@@ -44,6 +45,7 @@ class _MainWrapperState extends State<MainWrapper> {
     final List<Widget> pages = [
       HomeScreen(userName: firstName),
       const SearchScreen(),
+      const FavoriteScreen(),
       ProfileScreen(
         firstName: firstName,
         lastName: lastName,
@@ -75,6 +77,7 @@ class _MainWrapperState extends State<MainWrapper> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+            BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorite"), 
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],
         ),

@@ -71,7 +71,7 @@ class PolicyScreen extends StatelessWidget {
                             'Aplikasi ini di dirikan ooleh 5 orang yang berasal dari kelas TI-A pagi.',
                           ),
                           _buildPoint(
-                            'MENGGUNAKAN CUPLIKAN YOUTUBE',
+                            'TRAILER YOUTUBE',
                             'Cuplikan video diambil dari YT.',
                           ),
                           _buildPoint(

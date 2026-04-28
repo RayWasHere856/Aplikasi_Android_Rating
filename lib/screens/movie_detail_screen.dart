@@ -97,6 +97,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // --- HEADER GAMBAR POSTER ---
               Stack(
                 children: [
                   Image.asset(
@@ -119,21 +120,85 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 ],
               ),
 
+              // --- KONTEN INFORMASI ---
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.movie.title,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
+                    
+                    // Jarak agar konten tidak terlalu mepet ke gambar atas
+                    const SizedBox(height: 15),
 
+                    // ==========================================
+                    // --- ROW: JUDUL FILM & TOMBOL FAVORIT ---
+                    // ==========================================
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Expanded digunakan agar Judul memakan sisa ruang yang ada
+                        Expanded(
+                          child: Text(
+                            widget.movie.title,
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              height: 1.2,
+                            ),
+                          ),
+                        ),
+                        
+                        const SizedBox(width: 10), // Spasi antara judul dan tombol
+
+                        // Tombol Favorit di ujung kanan (diberi Padding Top sedikit)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (favoriteMovies.contains(widget.movie)) {
+                                  favoriteMovies.remove(widget.movie);
+                                } else {
+                                  favoriteMovies.add(widget.movie);
+                                }
+                              });
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  favoriteMovies.contains(widget.movie)
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: favoriteMovies.contains(widget.movie)
+                                      ? Colors.redAccent
+                                      : Colors.white54,
+                                  size: 23,
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  "Favorite",
+                                  style: TextStyle(
+                                    color: favoriteMovies.contains(widget.movie)
+                                        ? Colors.redAccent
+                                        : Colors.white54,
+                                    fontSize: 12,
+                                    fontWeight: favoriteMovies.contains(widget.movie) 
+                                        ? FontWeight.bold 
+                                        : FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // ==========================================
+                    
+                    const SizedBox(height: 15),
+
+                    // Baris Tanggal, Durasi, dan Rating
                     Row(
                       children: [
                         const Icon(
@@ -171,6 +236,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
                     const SizedBox(height: 15),
 
+                    // Chips Genre
                     Wrap(
                       spacing: 8,
                       children: widget.movie.genres
@@ -201,6 +267,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
 
                     const SizedBox(height: 25),
+                    
+                    // Sutradara dan Aktor
                     Text(
                       "Sutradara : ${widget.movie.director}",
                       style: const TextStyle(color: Colors.white70),
@@ -210,8 +278,10 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       "Aktor        : ${widget.movie.actors}",
                       style: const TextStyle(color: Colors.white70),
                     ),
+                    
                     const SizedBox(height: 25),
 
+                    // Sinopsis
                     const Text(
                       "SINOPSIS",
                       style: TextStyle(
@@ -231,6 +301,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
                     const SizedBox(height: 30),
 
+                    // Trailer YouTube
                     const Text(
                       "TRAILER",
                       style: TextStyle(
@@ -249,6 +320,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
                     const SizedBox(height: 30),
 
+                    // Reaksi (Like, Neutral, Dislike)
                     const Text(
                       "REAKSI ANDA",
                       style: TextStyle(
@@ -291,6 +363,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     const Divider(color: Colors.white10, thickness: 1),
                     const SizedBox(height: 20),
 
+                    // Input & Daftar Komentar
                     const Text(
                       "KOMENTAR",
                       style: TextStyle(

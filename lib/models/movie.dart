@@ -8,7 +8,8 @@ class Movie {
   final String releaseYear;
   final String director;
   final String actors;
-  final List<String> genres;
+  final List<String> genres; // Menampung banyak genre sekaligus
+
   Movie({
     required this.title,
     required this.description,
@@ -26,7 +27,8 @@ class Movie {
 List<Movie> allMovies = [
   Movie(
     title: "Breaking Bad",
-    description: "Seorang guru kimia yang didiagnosis menderita kanker beralih ke pembuatan metamfetamin demi masa depan keluarganya.",
+    description:
+        "Seorang guru kimia yang didiagnosis menderita kanker beralih ke pembuatan metamfetamin demi masa depan keluarganya.",
     imageUrl: "assets/images/BreakinBad.jpg",
     rating: 9.5,
     trailerUrl: "https://www.youtube.com/watch?v=HhesaQXLuRY",
@@ -38,7 +40,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "12 Angry Men",
-    description: "Seorang juri dalam pengadilan kasus pembunuhan berusaha mencegah ketidakadilan dengan meyakinkan 11 juri lainnya untuk mempertimbangkan kembali bukti-bukti yang ada secara objektif.",
+    description:
+        "Seorang juri dalam pengadilan kasus pembunuhan berusaha mencegah ketidakadilan dengan meyakinkan 11 juri lainnya untuk mempertimbangkan kembali bukti-bukti yang ada secara objektif.",
     imageUrl: "assets/images/12AM.jpg",
     rating: 9.0,
     trailerUrl: "https://www.youtube.com/watch?v=_13J_9B5jEk",
@@ -50,7 +53,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "Better Call Saul",
-    description: "Prekuel dari Breaking Bad yang mengisahkan perjalanan Jimmy McGill, seorang pengacara kecil yang berjuang keras sebelum akhirnya bertransformasi menjadi pengacara kriminal eksentrik bernama Saul Goodman.",
+    description:
+        "Prekuel dari Breaking Bad yang mengisahkan perjalanan Jimmy McGill, seorang pengacara kecil yang berjuang keras sebelum akhirnya bertransformasi menjadi pengacara kriminal eksentrik bernama Saul Goodman.",
     imageUrl: "assets/images/BCS.jpg",
     rating: 9.0,
     trailerUrl: "https://www.youtube.com/watch?v=HN4oydykJFc",
@@ -62,8 +66,9 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "Agak Laen",
-    description: "Empat sekawan penjaga rumah hantu di pasar malam mencari cara baru menakuti pengunjung agar tidak bangkrut.",
-    imageUrl: "assets/images/AgakLaen.jpg", 
+    description:
+        "Empat sekawan penjaga rumah hantu di pasar malam mencari cara baru menakuti pengunjung agar tidak bangkrut.",
+    imageUrl: "assets/images/AgakLaen.jpg",
     rating: 8.8,
     trailerUrl: "https://www.youtube.com/watch?v=kR02P6E0B8Y",
     duration: "1j 59m",
@@ -74,7 +79,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "Grave of the Fireflies",
-    description: "Serangan bom pesawat Amerika Serikat menghancurkan kota tersebut. Seita (remaja laki-laki) dan Setsuko (adik perempuannya yang masih kecil) kehilangan ibu mereka yang tewas akibat luka bakar parah saat pengeboman.",
+    description:
+        "Serangan bom pesawat Amerika Serikat menghancurkan kota tersebut. Seita (remaja laki-laki) dan Setsuko (adik perempuannya yang masih kecil) kehilangan ibu mereka yang tewas akibat luka bakar parah saat pengeboman.",
     imageUrl: "assets/images/FireFlies.jpeg",
     rating: 8.2,
     trailerUrl: "https://youtu.be/lhlh7JVcTt8",
@@ -86,7 +92,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "500 Days of Summer",
-    description: "Kisah komedi romantis non-linear tentang seorang pria yang jatuh cinta pada pandangan pertama dengan seorang wanita yang sama sekali tidak percaya pada cinta sejati.",
+    description:
+        "Kisah komedi romantis non-linear tentang seorang pria yang jatuh cinta pada pandangan pertama dengan seorang wanita yang sama sekali tidak percaya pada cinta sejati.",
     imageUrl: "assets/images/500days.jpg",
     rating: 7.7,
     trailerUrl: "https://youtu.be/PsD0NpFSADM",
@@ -98,7 +105,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "Avengers: Endgame",
-    description: "Setelah jentikan jari Thanos yang melenyapkan separuh populasi semesta, sisa-sisa Avengers berkumpul sekali lagi untuk mengembalikan keseimbangan alam semesta.",
+    description:
+        "Setelah jentikan jari Thanos yang melenyapkan separuh populasi semesta, sisa-sisa Avengers berkumpul sekali lagi untuk mengembalikan keseimbangan alam semesta.",
     imageUrl: "assets/images/Avenger.jpg",
     rating: 8.4,
     trailerUrl: "https://www.youtube.com/watch?v=TcMBFSGVi1c",
@@ -110,7 +118,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "Miracle In Cell No. 7",
-    description: "Seorang ayah dengan keterbelakangan mental yang dituduh secara tidak sah atas kasus pembunuhan. Ia membangun persahabatan dengan narapidana lain untuk bisa bertemu putrinya.",
+    description:
+        "Seorang ayah dengan keterbelakangan mental yang dituduh secara tidak sah atas kasus pembunuhan. Ia membangun persahabatan dengan narapidana lain untuk bisa bertemu putrinya.",
     imageUrl: "assets/images/Miracle.jpg",
     rating: 8.6,
     trailerUrl: "https://youtu.be/h9MGZFy-gog",
@@ -122,7 +131,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "You Are the Apple of My Eye",
-    description: "Sekelompok sahabat sekolah yang menyukai siswi teladan bernama Shen Chia-yi. Fokus utamanya adalah hubungan antara si pembuat onar, Ko-teng, dengan Shen Chia-yi.",
+    description:
+        "Sekelompok sahabat sekolah yang menyukai siswi teladan bernama Shen Chia-yi. Fokus utamanya adalah hubungan antara si pembuat onar, Ko-teng, dengan Shen Chia-yi.",
     imageUrl: "assets/images/Apple.jpg",
     rating: 8.5,
     trailerUrl: "https://youtu.be/gQylx2S9yrM",
@@ -134,7 +144,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "The Walking Dead",
-    description: "Deputi sheriff Rick Grimes memimpin sekelompok penyintas di dunia yang telah dikuasai zombie, menghadapi ancaman yang lebih besar dari sesama manusia.",
+    description:
+        "Deputi sheriff Rick Grimes memimpin sekelompok penyintas di dunia yang telah dikuasai zombie, menghadapi ancaman yang lebih besar dari sesama manusia.",
     imageUrl: "assets/images/TWD.jpg",
     rating: 8.7,
     trailerUrl: "https://youtu.be/cu2ApTImBKc",
@@ -146,7 +157,8 @@ List<Movie> allMovies = [
   ),
   Movie(
     title: "One Piece",
-    description: "Petualangan Monkey D. Luffy bersama krunya, Bajak Laut Topi Jerami, mengarungi lautan untuk menemukan harta karun legendaris One Piece dan menjadi Raja Bajak Laut.",
+    description:
+        "Petualangan Monkey D. Luffy bersama krunya, Bajak Laut Topi Jerami, mengarungi lautan untuk menemukan harta karun legendaris One Piece dan menjadi Raja Bajak Laut.",
     imageUrl: "assets/images/OP.jpg",
     rating: 9.9,
     trailerUrl: "https://youtu.be/lgAwlnGLTUg",
@@ -155,6 +167,517 @@ List<Movie> allMovies = [
     director: "Eiichiro Oda (Creator)",
     actors: "Mayumi Tanaka, Kazuya Nakai",
     genres: ["Animasi", "Petualangan", "Action", "Komedi"],
+  ),
+  Movie(
+    title: "Exhuma",
+    description: "Sebuah film cerita seru misteri okultisme Korea Selatan tahun 2024 yang ditulis dan disutradarai oleh Jang Jae-hyun. Film ini menceritakan tentang sepasang dukun, ahli feng shui, dan petugas pemakaman yang disewa oleh keluarga kaya untuk memindahkan sebuah kuburan leluhur yang misterius, namun tanpa sengaja melepaskan kutukan jahat yang tersembunyi di dalamnya.",
+    imageUrl: "assets/images/exhuma.jpg", 
+    rating: 8.0, 
+    trailerUrl: "https://www.youtube.com/watch?v=szJJYEkaR60",
+    duration: "2h 14m",
+    releaseYear: "2024",
+    director: "Jang Jae-hyun",
+    actors: "Choi Min-sik, Kim Go-eun, Yoo Hae-jin, Lee Do-hyun",
+    genres: ["Horor", "Misteri", "Thriller"],
+  ),
+  Movie(
+    title: "Dear X",
+    description: "Adaptasi dari webtoon populer, drama thriller psikologis ini mengisahkan Baek Ah-jin, seorang aktris papan atas bersisi gelap yang menggunakan dan memanipulasi orang lain untuk meraih kesuksesan. Cerita ini menyoroti kejatuhannya yang tragis serta kisah seorang pria yang tetap melindunginya dan mencintainya tanpa syarat meski mengetahui sifat aslinya.",
+    imageUrl: "assets/images/dearx.png",
+    rating: 8.5,
+    trailerUrl: "https://www.youtube.com/watch?v=contoh_link_trailer",
+    duration: "60m / Eps",
+    releaseYear: "2025",
+    director: "Lee Eung-bok",
+    actors: "Kim Yoo-jung, Kim Young-dae, Kim Do-hoon",
+    genres: ["Romantis", "Thriller", "Psikologis", "Drama"],
+  ),
+  Movie(
+    title: "Violet Evergarden",
+    description:
+        "Beberapa tahun setelah berakhirnya perang, dunia mulai berubah dengan hadirnya teknologi baru seperti telepon yang perlahan menggantikan peran surat. Di tengah kesuksesannya sebagai penulis surat ternama, Violet masih menyimpan kerinduan mendalam pada Mayor Gilbert Bougainvillea, orang yang memberinya identitas dan mengucapkan kata (Aku mencitaimu) sebelum menghilang di medan perang.",
+    imageUrl: "assets/images/violet.jpg",
+    rating: 8.3,
+    trailerUrl: "https://youtu.be/BUfSen2rYQs?si=BCIcu3J_Q0JqqVZ8",
+    duration: "2j 20m",
+    releaseYear: "2020",
+    director: "Taichi Ishidate",
+    actors: "Yui Ishikawa, Daisuke Namikawa, Takehito Koyasu, Hidenobu Kiuchi",
+    genres: ["Animasi", "Drama", "Fantasi", "Romantis"],
+  ),
+  Movie(
+    title: "Attack on Titan: The Last Attack",
+    description:
+        "Cerita mencapai puncaknya saat Eren Yeager mengaktifkan The Rumbling, mengerahkan ribuan Titan Dinding untuk meratakan dunia di luar Pulau Paradis guna mengakhiri kebencian terhadap bangsanya. Mantan rekan-rekannya di Survey Corps, termasuk Mikasa, Armin, dan Levi, harus bekerja sama dengan sisa prajurit Marley untuk menghentikan Eren dalam pertempuran terakhir yang menentukan nasib umat manusia.",
+    imageUrl: "assets/images/aot.jpg",
+    rating: 9.6,
+    trailerUrl: "https://youtu.be/-TUdNmIrkQI?si=WTEJL6gXdzBU0Yt4",
+    duration: "2j 25m",
+    releaseYear: "2024",
+    director: "Yuichiro Hayashi",
+    actors: "Yui Ishikawa, Yuki Kaji, Marina Inoue, Hiroshi Kamiya",
+    genres: ["Animasi", "Action", "Drama", "Petualangan"],
+  ),
+  Movie(
+    title: "The Shining",
+    description:
+        "Jack Torrance, seorang penulis dan alkoholik yang sedang pulih, menerima pekerjaan sebagai penjaga hotel terpencil, Overlook Hotel, selama musim dingin. Ia memboyong istrinya, Wendy, dan anaknya, Danny. Danny memiliki kemampuan psikis yang disebut The Shining yang membuatnya bisa melihat masa lalu kelam hotel tersebut. Isolasi salju yang ekstrem dan kekuatan jahat di dalam hotel perlahan membuat Jack kehilangan akal sehatnya, hingga ia mulai memburu keluarganya sendiri.",
+    imageUrl: "assets/images/shining.jpg",
+    rating: 8.4,
+    trailerUrl: "https://youtu.be/5Cb3ik6zP2I?si=aAk38PxviqCQcxBC",
+    duration: "2j 26m",
+    releaseYear: "1980",
+    director: "Stanley Kubrick",
+    actors: "Jack Nicholson, Danny Lloyd, Scatman Crothers, Shelley Duvall",
+    genres: ["Horor", "Drama"],
+  ),
+  Movie(
+    title: "Naruto: The Last",
+    description:
+        "Berlatar dua tahun setelah Perang Dunia Shinobi Keempat, bulan perlahan-lahan mulai jatuh ke bumi akibat perbuatan Toneri Otsutsuki, keturunan dari Hamura Otsutsuki. Toneri menculik Hanabi Hyuga dan berniat untuk menikahi Hinata. Naruto bersama rekan-rekannya melakukan misi penyelamatan yang akhirnya membuat Naruto menyadari perasaan cinta sejatinya kepada Hinata.",
+    imageUrl: "assets/images/naruto.jpg",
+    rating: 7.6,
+    trailerUrl: "https://youtu.be/tA3yE4_t6SY?si=rjJkjEGaLkS6qUoe",
+    duration: "1j 52m",
+    releaseYear: "2014",
+    director: "Tsuneo Kobayashi",
+    actors: "Junko Takeuchi, Nana Mizuki, Jun Fukuyama, Chie Nakamura",
+    genres: ["Animasi", "Action", "Petualangan", "Romantis"],
+  ),
+  Movie(
+    title: "Wednesday",
+    description:
+        "Perjalanan Wednesday Addams, putri dari keluarga Addams yang ikonik, saat ia menjadi murid di Nevermore Academy, sebuah sekolah asrama untuk para outcast (orang-orang buangan dengan kemampuan supranatural). Sambil berusaha menguasai kemampuan psikisnya yang baru muncul, Wednesday harus memecahkan misteri pembunuhan berantai yang meneror kota setempat dan mengungkap rahasia yang melibatkan orang tuanya 25 tahun silam.",
+    imageUrl: "assets/images/rabu.jpg",
+    rating: 8.1,
+    trailerUrl: "https://youtu.be/Di310WS8zLk?si=DBdZXOxXeC_j7xNl",
+    duration: "48m / eps",
+    releaseYear: "2022",
+    director: "Tim Burton",
+    actors:
+        "Jenna Ortega, Emma Myers, Catherine Zeta-Jones, Luis Guzmán, Christina Ricci",
+    genres: ["Komedi Gelap", "Fantasi", "Misteri"],
+  ),
+  Movie(
+    title: "Parasite",
+    description:
+        "Keluarga miskin (Keluarga Kim) secara perlahan menyusup ke dalam kehidupan keluarga kaya (Keluarga Park) dengan cara menyamar menjadi pekerja profesional di rumah mereka. Namun, rencana licik ini mulai berantakan dan berubah menjadi kekacauan tragis saat sebuah rahasia gelap di rumah tersebut terungkap.",
+    imageUrl: "assets/images/parasite.jpg",
+    rating: 8.5,
+    trailerUrl: "https://youtu.be/isOGD_7hNIY?si=n-SC9ffYRHo0qhb0",
+    duration: "2j 11m",
+    releaseYear: "2019",
+    director: "Bong Joon-ho",
+    actors:
+        "Song Kang-ho, Jang Hye-jin, Choi Woo-shik, Park So-dam, Lee Sun-kyun, Cho Yeo-jeong",
+    genres: ["Komedi Gelap", "Thriller", "Drama"],
+  ),
+  Movie(
+    title: "Gundala",
+    description:
+        "Sancaka, seorang anak yatim piatu yang hidup keras di jalanan, harus memilih antara tetap peduli pada keselamatannya sendiri atau bangkit menggunakan kekuatan petir miliknya untuk melawan ketidakadilan dan bos mafia kejam demi membela kaum yang tertindas.",
+    imageUrl: "assets/images/gundala.jpg",
+    rating: 6.5,
+    trailerUrl: "https://youtu.be/8rauD1vxMCw?si=e2OOK11Wj1SbO3Nw",
+    duration: "2j 3m",
+    releaseYear: "2019",
+    director: "Joko anwar",
+    actors:
+        "Abimana Aryasatya, Tara Basro, Bront Palarae, Ario Bayu, Lukman Sardi, Muzakki Ramdhan",
+    genres: ["Action", "Sci-Fi"],
+  ),
+  Movie(
+    title: "The Raid: Redemption",
+    description:
+        "Sebuah tim elit kepolisian (SWAT) melakukan penyerbuan ke sebuah apartemen kumuh di Jakarta yang menjadi markas gembong narkoba kejam bernama Tama. Namun, misi tersebut berubah menjadi bencana saat posisi mereka ketahuan, menjebak mereka di dalam gedung penuh pembunuh dan kriminal bersenjata. Rama dan rekan-rekannya yang tersisa harus bertarung di setiap lantai untuk bertahan hidup dan menyelesaikan misi mereka.",
+    imageUrl: "assets/images/raid1.jpg",
+    rating: 7.6,
+    trailerUrl: "https://youtu.be/m6Q7KnXpNOg?si=em28JOTmJvuP0OQU",
+    duration: "1j 41m",
+    releaseYear: "2011",
+    director: "Gareth Evans",
+    actors:
+        "Iko Uwais, Donny Alamsyah, Joe Taslim, Yayan Ruhian, Ray Sahetapy, Pierre Gruno",
+    genres: ["Action", "Thriller", "Crime"],
+  ),
+  Movie(
+    title: "The Raid: Berandal",
+    description:
+        "Tak lama setelah kejadian di film pertama, Rama terpaksa menyamar dan masuk ke dalam penjara untuk mendekati putra seorang bos mafia besar demi membongkar korupsi di kepolisian serta menghancurkan sindikat kejahatan dari dalam. Penyamaran ini menyeretnya ke dalam perang wilayah yang brutal antar geng di Jakarta.",
+    imageUrl: "assets/images/raid2.jpg",
+    rating: 8.0,
+    trailerUrl: "https://youtu.be/PQ6yUHHfZ04?si=Vh1nFdj-xX83FVEC",
+    duration: "2j 30m",
+    releaseYear: "2011",
+    director: "Gareth Evans",
+    actors:
+        "Iko Uwais, Arifin Putra, Tio Pakusadewo, Oka Antara, Cecep Arif Rahman, Julie Estelle, Alex Abbad",
+    genres: ["Action", "Thriller", "Crime"],
+  ),
+  Movie(
+    title: "Sri Asih",
+    description:
+        "Alana, seorang petarung MMA yang sering dikuasai amarah hebat, menemukan bahwa dirinya adalah titisan Dewi Asih yang ditakdirkan untuk menjadi pahlawan. Ia harus belajar mengendalikan kekuatannya untuk menghentikan kebangkitan Dewi Api dan para panglimanya yang mengancam dunia.",
+    imageUrl: "assets/images/sri.jpg",
+    rating: 6.3,
+    trailerUrl: "https://youtu.be/QeT6Ke2kQYo?si=r15rCgEord49XoUO",
+    duration: "2j 15m",
+    releaseYear: "2022",
+    director: "Upi",
+    actors:
+        "Pevita Pearce, Jefri Nichol, Reza Rahadian, Ario Bayu, Christine Hakim",
+    genres: ["Action", "Fantasi", "Sci-Fi"],
+  ),
+  Movie(
+    title: "La La Land",
+    description:
+        "Berlatar di Los Angeles, seorang calon aktris bernama Mia dan seorang pianis jazz idealis bernama Sebastian bertemu dan jatuh cinta sambil mengejar impian mereka masing-masing. Namun, seiring dengan kesuksesan yang mulai datang, mereka dihadapkan pada pilihan sulit antara mempertahankan hubungan cinta mereka atau mengejar ambisi karier yang selama ini mereka impikan.",
+    imageUrl: "assets/images/lala.jpg",
+    rating: 8.0,
+    trailerUrl: "https://youtu.be/0pdqf4P9MB8?si=OoLl4bPLg8xACzPt",
+    duration: "2j 8m",
+    releaseYear: "2016",
+    director: "Damien Chazelle",
+    actors: "Ryan Gosling, Emma Stone, J.K. Simmons, John Legend",
+    genres: ["Musikal", "Romantis", "Drama", "Komedi"],
+  ),
+  Movie(
+    title: "Sherlock Holmes",
+    description:
+        "Detektif eksentrik Sherlock Holmes dan rekannya yang setia, Dr. John Watson, harus menghadapi musuh baru yang berbahaya, Lord Blackwood. Setelah dihukum gantung, Blackwood secara misterius tampak bangkit dari kematian dan berencana menggunakan kekuatan gelap serta teknologi tersembunyi untuk menguasai Inggris. Holmes dan Watson harus berpacu dengan waktu untuk menghentikan rencana jahat tersebut.",
+    imageUrl: "assets/images/sherlock.jpg",
+    rating: 7.7,
+    trailerUrl: "https://youtu.be/J7nJksXDBWc?si=oxlcR5jNcxWSpuJJ",
+    duration: "2j 8m",
+    releaseYear: "2009",
+    director: "Guy Ritchie",
+    actors: "Robert Downey Jr, Jude Law, Mark Strong, Eddie Marsan",
+    genres: ["Action", "Misteri", "Petualangan", "Crime"],
+  ),
+  Movie(
+    title: "Jumbo",
+    description:
+        "Don, seorang anak laki-laki berusia 10 tahun bertubuh gempal yang sering dirundung, berusaha membuktikan dirinya dengan mengikuti pertunjukan bakat menggunakan buku dongeng peninggalan orang tuanya. Namun, setelah bukunya dicuri oleh seorang perundung, Don bertemu dengan peri misterius bernama Meri yang membawanya ke petualangan ajaib untuk menemukan kembali kepercayaan dirinya dan orang tua Meri.",
+    imageUrl: "assets/images/jumbo.jpeg",
+    rating: 9.6,
+    trailerUrl: "https://youtu.be/yMqDgbZmBdk?si=l8IkGAfFseVSbIlE",
+    duration: "1j 45m",
+    releaseYear: "2025",
+    director: "Ryan Adriandhy",
+    actors:
+        "Prince Poetiray, Quinn Salman, Yusuf Özkan, Graciella Abigail, Bunga Citra Lestari, Ariel, Muhammad Adhiyat",
+    genres: ["Animasi", "Fantasi", "Petualangan", "Keluarga"],
+  ),
+  Movie(
+    title: "KPop: Demon Hunters",
+    description:
+        "Anggota grup girlband K-Pop papan atas bernama Huntr/x (Rumi, Mira, dan Zoey) menjalani kehidupan ganda yang berbahaya. Di siang hari mereka adalah idola global yang mengisi stadion, namun di malam hari mereka adalah pemburu iblis yang melindungi penggemar mereka dari ancaman supranatural. Masalah besar muncul ketika mereka harus berhadapan dengan Saja Boys, sebuah boyband rival yang ternyata adalah sekumpulan iblis yang sedang menyamar.",
+    imageUrl: "assets/images/kpop.jpg",
+    rating: 8.5,
+    trailerUrl: "https://youtu.be/AzCAwdp1uIQ?si=rS7EYPV9OjQGvGBv",
+    duration: "1j 39m",
+    releaseYear: "2025",
+    director: "Maggie Kang dan Chris Appelhans",
+    actors: "Arden Cho, May Hong, Ahn Hyo-seop, Lee Byung-hun, Ken Jeong",
+    genres: ["Animasi", "Musikal", "Action", "Komedi"],
+  ),
+  Movie(
+    title: "Arcane",
+    description:
+        "Berlatar di dunia gim League of Legends, cerita ini berfokus pada hubungan tragis antara dua saudara perempuan, Vi dan Jinx. Di tengah konflik antara kota Piltover yang kaya dan canggih dengan kota bawah tanah Zaun yang kumuh dan tertindas, keduanya terpisah dan tumbuh di sisi yang berlawanan dari perang yang melibatkan teknologi sihir (Hextech) dan zat kimia berbahaya (Shimmer).",
+    imageUrl: "assets/images/arcane.jpg",
+    rating: 9.0,
+    trailerUrl: "https://youtu.be/fXmAurh012s?si=M5Q26M0JEiclQRZT",
+    duration: "40m / eps",
+    releaseYear: "2021",
+    director: "Pascal Charrue dan Arnaud Delord",
+    actors:
+        "Hailee Steinfeld, Ella Purnell, Katie Leung, Kevin Alejandro, Jason Spisak, Harry Lloyd",
+    genres: ["Animasi", "Petualangan", "Action", "Sci-Fi"],
+  ),
+  Movie(
+    title: "Jagal: The Act of Killing",
+    description:
+        "Film ini menantang para mantan pemimpin pasukan pembunuh di Medan untuk menceritakan kembali aksi pembantaian massal terhadap tertuduh komunis pada tahun 1965-1966. Uniknya, para pelaku diminta memerankan kembali pembunuhan tersebut dalam gaya film favorit mereka (seperti musikal, koboi, atau mafia), yang akhirnya mengungkap psikologi, rasa bangga, hingga penyesalan yang terpendam di balik kekejaman masa lalu mereka.",
+    imageUrl: "assets/images/jagal.jpg",
+    rating: 8.3,
+    trailerUrl: "https://youtu.be/Q3FcB1UZHlg?si=6oD34fcf-Jr1BOs0",
+    duration: "2j 40m",
+    releaseYear: "2012",
+    director: "Joshua Oppenheimer",
+    actors: "Anwar Congo, Adi Zulkadry, Herman Koto",
+    genres: ["Dokumenter", "Crime", "Sejarah"],
+  ),
+  Movie(
+    title: "Oppenheimer",
+    description:
+        "Film ini menceritakan perjalanan fisikawan teoritis J. Robert Oppenheimer dalam memimpin Proyek Manhattan di Los Alamos selama Perang Dunia II. Cerita berfokus pada dilema moral dan konflik batin yang ia alami setelah menyadari dampak mengerikan dari senjata pemusnah massal buatannya terhadap masa depan umat manusia.",
+    imageUrl: "assets/images/oppenheimer.jpg",
+    rating: 8.4,
+    trailerUrl: "https://youtu.be/uYPbbksJxIg?si=JUzE2vuld6FxZvsx",
+    duration: "3j",
+    releaseYear: "2023",
+    director: "Christopher Nolan",
+    actors:
+        "Cillian Murphy, Robert Downey Jr, Emily Blunt, Florence Pugh, Matt Damon",
+    genres: ["Biografi", "Sejarah", "Drama"],
+  ),
+  Movie(
+    title: "Barbie",
+    description:
+        "Barbie yang tinggal di dunia sempurna (Barbie Land) tiba-tiba mengalami krisis eksistensial. Untuk menemukan jawaban, ia harus pergi ke dunia nyata ditemani oleh Ken. Di sana, ia menyadari realitas kehidupan manusia yang rumit, sementara Ken membawa pengaruh dunia nyata kembali ke Barbie Land yang menyebabkan kekacauan.",
+    imageUrl: "assets/images/barbie.jpg",
+    rating: 7.0,
+    trailerUrl: "https://youtu.be/pBk4NYhWNMM?si=tvePA3nLCGuHfNyq",
+    duration: "1j 54m",
+    releaseYear: "2023",
+    director: "Greta Gerwig",
+    actors:
+        "Margot Robbie, Ryan Gosling, America Ferrera, Will Ferrell, Kate McKinnon",
+    genres: ["Komedi", "Fantasi", "Petualangan"],
+  ),
+  Movie(
+    title: "Ballerina: From the World of John Wick",
+    description:
+        "Eve Macarro adalah seorang wanita muda yang dilatih dalam tradisi mematikan organisasi Ruska Roma (tempat yang sama yang melatih John Wick) untuk menjadi balerina sekaligus pembunuh bayaran. Cerita mengikuti misinya untuk membalas dendam kepada sekelompok pembunuh yang telah membantai keluarganya saat ia masih kecil. Dalam perjalanannya, ia bertemu dengan tokoh-tokoh dari dunia High Table, termasuk John Wick yang memberikan pandangan tentang konsekuensi dari jalan balas dendam.",
+    imageUrl: "assets/images/balerina.jpg",
+    rating: 8.1,
+    trailerUrl: "https://youtu.be/0FSwsrFpkbw?si=TzZbj5aWZZzCP3VS",
+    duration: "2j 5m",
+    releaseYear: "2025",
+    director: "Len Wiseman",
+    actors:
+        "Ana de Armas, Keanu Reeves, Ian McShane, Lance Reddick, Gabriel Byrne",
+    genres: ["Action", "Thriller", "Crime"],
+  ),
+  Movie(
+    title: "Suzume no Tojimari",
+    description:
+        "Suzume, seorang gadis remaja di Kyushu, bertemu dengan seorang pemuda misterius yang mencari pintu. Tanpa sengaja, ia membuka sebuah pintu tua di sebuah bangunan terbengkalai, yang ternyata melepaskan bencana berupa gempa bumi besar ke seluruh Jepang. Suzume kini harus melakukan perjalanan melintasi Jepang untuk mengunci pintu-pintu ajaib tersebut sebelum kehancuran total terjadi.",
+    imageUrl: "assets/images/suzume.jpeg",
+    rating: 7.6,
+    trailerUrl: "https://youtu.be/5pTcio2hTSw?si=e58dktmJXyIhZhYi",
+    duration: "2j 2m",
+    releaseYear: "2022",
+    director: "Makoto Shinkai",
+    actors: "Nanoka Hara, Hokuto Matsumura, Eri Fukatsu, Shota Sometani",
+    genres: ["Animasi", "Petualangan", "Fantasi", "Drama"],
+  ),
+  Movie(
+    title: "Tenki no Ko",
+    description:
+        "Hodaka, seorang remaja yang kabur dari rumah ke Tokyo yang sedang dilanda hujan tanpa henti, bertemu dengan seorang gadis bernama Hina. Hina ternyata memiliki kekuatan misterius untuk menghentikan hujan dan mendatangkan sinar matahari melalui doa. Bersama-sama, mereka menggunakan kekuatan tersebut untuk membantu orang lain, namun mereka segera menyadari bahwa mengubah cuaca memiliki konsekuensi pribadi yang berat bagi Hina.",
+    imageUrl: "assets/images/weathering.jpg",
+    rating: 7.5,
+    trailerUrl: "https://youtu.be/Q6iK6DjV_iE?si=uwOvNMoBNCxgYPSe",
+    duration: "1j 52m",
+    releaseYear: "2019",
+    director: "Makoto Shinkai",
+    actors: "Kotaro Daigo, Tsubasa Honda, Nana Mori, Shun Oguri",
+    genres: ["Animasi", "Romantis", "Fantasi", "Drama"],
+  ),
+  Movie(
+    title: "Koe no Katachi",
+    description:
+        "Berlatar di Kyoto tahun 2027, Naomi Katagaki, seorang remaja kutu buku, tiba-tiba didatangi oleh dirinya sendiri dari masa depan (tahun 2037). Dirinya yang dewasa meminta bantuan untuk menyelamatkan teman sekelas mereka, Ruri Ichigyou, dari kecelakaan tragis yang akan segera terjadi. Namun, dalam prosesnya, Naomi menyadari bahwa dunia yang ia tinggali bukanlah dunia nyata, melainkan sekumpulan data yang tersimpan dalam sistem komputer canggih bernama Alltale.",
+    imageUrl: "assets/images/koe.jpg",
+    rating: 8.8,
+    trailerUrl: "https://youtu.be/nfK6UgLra7g?si=bGsMuD7MbypB4okZ",
+    duration: "2j 10m",
+    releaseYear: "2016",
+    director: "Naoko Yamada",
+    actors: "Miyu Irino, Saori Hayami, Aoi Yuuki, Kensho Ono",
+    genres: ["Animasi", "Romantis", "Slice of Life", "Drama"],
+  ),
+  Movie(
+    title: "Titanic",
+    description:
+        "Berlatar di atas kapal RMS Titanic yang megah pada tahun 1912, seorang seniman miskin bernama Jack Dawson dan seorang bangsawan muda bernama Rose DeWitt Bukater jatuh cinta meskipun berasal dari kelas sosial yang berbeda. Namun, kisah cinta mereka yang singkat berubah menjadi perjuangan hidup dan mati yang tragis ketika kapal yang dianggap tidak bisa tenggelam itu menabrak gunung es di Samudra Atlantik Utara.",
+    imageUrl: "assets/images/titanic.jpg",
+    rating: 7.9,
+    trailerUrl: "https://youtu.be/kVrqfYjkTdQ?si=Bgn82H5orxMvYMCs",
+    duration: "3j 14m",
+    releaseYear: "1997",
+    director: "James Cameron",
+    actors:
+        "Leonardo DiCaprio, Kate Winslet, Billy Zane, Kathy Bates, Gloria Stuart",
+    genres: ["Sejarah", "Romantis", "Drama"],
+  ),
+  Movie(
+    title: "Habibie & Ainun",
+    description:
+        "Mengisahkan pertemuan kembali Rudy Habibie dan Ainun setelah sekian lama, pernikahan mereka, hingga perjuangan Habibie membangun industri pesawat terbang Indonesia dengan dukungan penuh dari Ainun.",
+    imageUrl: "assets/images/habibi.jpg",
+    rating: 7.6,
+    trailerUrl: "https://youtu.be/rKGvrEWCG3A?si=t0tbXzdjurE00FE-",
+    duration: "2j 5m",
+    releaseYear: "1997",
+    director: "Faozan Rizal",
+    actors: "Reza Rahadian, Bunga Citra Lestari",
+    genres: ["Biografi", "Romantis", "Drama"],
+  ),
+  Movie(
+    title: "Kingdom of Heaven",
+    description:
+        "Berlatar abad ke-12, seorang pandai besi asal Prancis bernama Balian yang sedang berduka melakukan perjalanan ke Yerusalem setelah mengetahui identitas asli ayahnya sebagai seorang ksatria. Di sana, ia terjerumus ke dalam intrik politik dan konflik agama yang memuncak. Balian akhirnya harus memimpin pertahanan kota Yerusalem melawan pasukan besar Sultan Saladin untuk melindungi penduduknya dari kehancuran.",
+    imageUrl: "assets/images/koh.jpg",
+    rating: 7.5,
+    trailerUrl: "https://youtu.be/KartNo8EDWY?si=dTzcgfFBHAQ_phbq",
+    duration: "2j 24m",
+    releaseYear: "2005",
+    director: "Ridley Scott",
+    actors:
+        "Orlando Bloom, Eva Green, Jeremy Irons, Liam Neeson, Ghassan Massoud",
+    genres: ["Action", "Perang", "Petualangan"],
+  ),
+  Movie(
+    title: "Interstellar",
+    description:
+        "Berlatar di masa depan distopia di mana Bumi terancam oleh badai debu dan kelaparan, seorang mantan pilot NASA bernama Cooper direkrut untuk memimpin misi penjelajahan ruang angkasa. Bersama tim ilmuwan, ia harus melewati sebuah lubang cacing (wormhole) dekat Saturnus untuk mencari planet baru yang layak huni demi menyelamatkan umat manusia dari kepunahan.",
+    imageUrl: "assets/images/inter.jpg",
+    rating: 8.7,
+    trailerUrl: "https://youtu.be/zSWdZVtXT7E?si=-r-4QdrgoIzgYaTK",
+    duration: "2j 49m",
+    releaseYear: "2014",
+    director: "Christopher Nolan",
+    actors:
+        "Matthew McConaughey, Anne Hathaway, Matt Damon, Michael Caine, Jessica Chastain",
+    genres: ["Sci-Fi", "Drama", "Petualangan"],
+  ),
+  Movie(
+    title: "The Menu",
+    description:
+        "Sepasang kekasih muda melakukan perjalanan ke pulau terpencil untuk makan di restoran eksklusif milik Chef ternama, Julian Slowik. Sang Chef telah menyiapkan menu yang luar biasa, namun setiap hidangannya disertai kejutan yang semakin aneh dan berbahaya. Acara makan malam mewah tersebut berubah menjadi perjuangan bertahan hidup bagi para tamu saat niat asli Chef Slowik yang mengerikan mulai terungkap.",
+    imageUrl: "assets/images/menu.jpg",
+    rating: 7.5,
+    trailerUrl: "https://youtu.be/C_uTkUGcHv4?si=pevE8unoIQp7jBBM",
+    duration: "1j 47m",
+    releaseYear: "2022",
+    director: "Mark Mylod",
+    actors:
+        "Ralph Fiennes, Anya Taylor-Joy , Nicholas Hoult, Hong Chau, Janet McTeer",
+    genres: ["Thriller", "Horor", "Komedi Gelap"],
+  ),
+  Movie(
+    title: "Maharaja",
+    description:
+        "Seorang tukang cukur pendiam bernama Maharaja melaporkan kehilangan sebuah tempat sampah tua yang ia beri nama Lakshmi ke kantor polisi. Awalnya, polisi menganggap laporan tersebut hanyalah lelucon, namun Maharaja bersikeras bahwa benda tersebut sangat berharga. Ternyata, pencarian tempat sampah itu hanyalah pintu masuk menuju misteri yang jauh lebih gelap terkait masa lalu yang tragis dan aksi balas dendam yang brutal.",
+    imageUrl: "assets/images/raja.jpg",
+    rating: 9.9,
+    trailerUrl: "https://youtu.be/Otcr-vRuaQs?si=B07frQIUk4TJKUvO",
+    duration: "2j 21m",
+    releaseYear: "2024",
+    director: "Nithilan Saminathan",
+    actors:
+        "Vijay Sethupathi, Anurag Kashyap, Sachana Namidass, Mamta Mohandas, Natty ",
+    genres: ["Action", "Thriller", "Drama", "Crime"],
+  ),
+  Movie(
+    title: "Squid Game",
+    description:
+        "Ratusan orang yang terlilit utang besar menerima undangan misterius untuk berkompetisi dalam serangkaian permainan tradisional anak-anak Korea. Namun, mereka segera menyadari bahwa kekalahan dalam permainan berarti kematian instan. Para peserta harus bertahan hidup melewati berbagai tantangan mematikan demi memenangkan hadiah uang tunai sebesar 45,6 miliar Won.",
+    imageUrl: "assets/images/game.jpg",
+    rating: 9.0,
+    trailerUrl: "https://youtu.be/oqxAJKy0ii4?si=4DsV_KH6rJ2st33C",
+    duration: "50m / eps",
+    releaseYear: "2021",
+    director: "Hwang Dong-hyuk",
+    actors:
+        "Lee Jung-jae, Park Hae-soo, Jung Ho-yeon, Oh Young-soo, Wi Ha-joon ",
+    genres: ["Action", "Thriller", "Drama"],
+  ),
+  Movie(
+    title: "Avengers: Infinity War",
+    description:
+        "The Avengers dan sekutu mereka harus bersatu dan rela mengorbankan segalanya untuk mengalahkan Thanos, seorang penguasa lalim yang kuat, sebelum ia berhasil mengumpulkan keenam Infinity Stones dan menggunakannya untuk melenyapkan separuh kehidupan di alam semesta.",
+    imageUrl: "assets/images/infiniti.jpg",
+    rating: 8.5,
+    trailerUrl: "https://youtu.be/6ZfuNTqbHE8?si=oxc522vSolFlt87J",
+    duration: "2j 29m",
+    releaseYear: "2018",
+    director: "Anthony Russo dan Joe Russo",
+    actors: "Tom Holland, Benedict Cumberbatch, Josh Brolin, Robert Downey Jr.",
+    genres: ["Action", "Petualangan", "Sci-fi"],
+  ),
+  Movie(
+    title: "The Dark Knight",
+    description:
+        "Batman Begins, Batman, Gordon, dan Harvey Dent berusaha memberantas kejahatan di Gotham, namun diganggu oleh Joker, teroris sadis yang membawa kekacauan dan menguji batas moral Batman.",
+    imageUrl: "assets/images/batman.jpg",
+    rating: 9.5,
+    trailerUrl: "https://youtu.be/EXeTwQWrcwY?si=zHtt-WbVB6ceBK1E",
+    duration: "2j 32m",
+    releaseYear: "2008",
+    director: "Christopher Nolan",
+    actors: "Heath Ledger, Christian Bale, Gary Oldman, Morgan Freeman",
+    genres: ["Action", "Crime", "Drama", "Thriller"],
+  ),
+  Movie(
+    title: "Kill Bill: Vol 1",
+    description:
+        "Setelah koma selama empat tahun akibat ditembak oleh mantan bosnya, Bill, dan anggota kelompok pembunuh bayaran lainnya, seorang mantan pembunuh (The Bride) terbangun dan bersumpah akan membalas dendam kepada mereka satu per satu.",
+    imageUrl: "assets/images/bill1.jpg",
+    rating: 8.2,
+    trailerUrl: "https://youtu.be/7kSuas6mRpk?si=LlPZ-3_oTCJXMWdy",
+    duration: "1j 51m",
+    releaseYear: "2003",
+    director: "Quentin Tarantino",
+    actors:
+        "Uma Thurman, Lucy Liu, Vivica A. Fox, Daryl Hannah, Michael Madsen, David Carradine",
+    genres: ["Action", "Crime", "Thriller"],
+  ),
+  Movie(
+    title: "Kill Bill: Vol 2",
+    description:
+        "The Bride melanjutkan misi balas dendamnya untuk menemukan dan membunuh dua anggota tersisa dari skuad pembunuh bayaran, serta target utamanya: Bill, kekasih sekaligus bos lamanya yang mencoba membunuhnya di hari pernikahan.",
+    imageUrl: "assets/images/bill2.jpg",
+    rating: 8.0,
+    trailerUrl: "https://youtu.be/WTt8cCIvGYI?si=netpAgLr2FogJ1pr",
+    duration: "2j 17m",
+    releaseYear: "2004",
+    director: "Quentin Tarantino",
+    actors:
+        " Uma Thurman, David Carradine, Michael Madsen, Daryl Hannah, Gordon Liu, dan Michael Parks",
+    genres: ["Action", "Crime", "Thriller"],
+  ),
+  Movie(
+    title: "Kimi no Nawa",
+    description:
+        "Anime ini mengisahkan tentang dua remaja, Mitsuha Miyamizu, seorang siswi SMA yang tinggal di pedesaan (Itomori) dan bosan dengan kehidupan desanya, dan Taki Tachibana, siswa SMA yang tinggal di tengah hiruk pikuk Tokyo. Tanpa alasan yang jelas, mereka mulai bertukar tubuh secara acak saat tertidur.Mereka mencoba saling beradaptasi dengan kehidupan masing-masing dan berkomunikasi melalui catatan. Namun, ketika mereka memutuskan untuk bertemu, terungkap fakta bahwa pertukaran tubuh tersebut melibatkan perbedaan waktu dan bencana alam yang berkaitan dengan komet.",
+    imageUrl: "assets/images/kimi.jpg",
+    rating: 8.0,
+    trailerUrl: "https://youtu.be/xU47nhruN-Q?si=L5OS9ZSh7K07VhpB",
+    duration: "1j 47m",
+    releaseYear: "2016",
+    director: "Makoto Shinkai",
+    actors: "Ryunosuke Kamiki, Mone Kamishiraishi",
+    genres: ["Fantasi", "Romantis", "Drama"],
+  ),
+  Movie(
+    title: "The Shawshank Redemption",
+    description:
+        "Film ini diadaptasi dari novel pendek Stephen King berjudul Rita Hayworth and Shawshank Redemption. Ceritanya berpusat pada Andy Dufresne (Tim Robbins), seorang bankir yang dijatuhi hukuman seumur hidup di Penjara Negara Bagian Shawshank atas pembunuhan istri dan selingkuhannya, meskipun ia bersikeras tidak bersalah. Di penjara, ia menjalin persahabatan erat dengan sesama narapidana bernama Red (Morgan Freeman), mempertahankan kemanusiaannya, dan menggunakan keahlian keuangannya untuk membantu sipir korup, sambil secara diam-diam merencanakan kebebasannya selama hampir dua dekade.",
+    imageUrl: "assets/images/shaw.jpg",
+    rating: 9.3,
+    trailerUrl: "https://youtu.be/NmzuHjWmXOc?si=fHae8I4LMiyw8Lt-",
+    duration: "2j 22m",
+    releaseYear: "1994",
+    director: "Frank Darabont",
+    actors: "Tim Robbins, Morgan Freeman, Bob Gunton, Clancy Brown,",
+    genres: ["Crime", "Drama"],
+  ),
+  Movie(
+    title: "Memento",
+    description:
+        "Film ini mengikuti kisah Leonard Shelby, seorang mantan penyelidik asuransi yang menderita anterograde amnesia (kehilangan ingatan jangka pendek) setelah diserang saat mencoba menyelamatkan istrinya yang diperkosa dan dibunuh. Leonard tidak dapat membentuk ingatan baru dan tidak ingat apa yang terjadi 15 menit yang lalu. Untuk membalas dendam, ia menggunakan sistem rumit berupa tato di tubuhnya, catatan tulisan tangan, dan foto Polaroid untuk melacak pembunuh istrinya. Keunikan film ini adalah alur ceritanya yang disajikan secara terbalik (mundur) dan kronologis hitam-putih, memaksa penonton merasakan kebingungan Leonard.",
+    imageUrl: "assets/images/memen.jpg",
+    rating: 8.6,
+    trailerUrl: "https://youtu.be/4CV41hoyS8A?si=z-SlVTuqfDu-xQiG",
+    duration: "1j 53m",
+    releaseYear: "2000",
+    director: "Christopher Nolan",
+    actors: "Guy Pearce, Carrie-Anne Moss, Joe Pantoliano",
+    genres: ["Misteri"],
   ),
 ];
 List<Movie> favoriteMovies = [];

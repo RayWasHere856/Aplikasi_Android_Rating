@@ -123,7 +123,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // --- HEADER GAMBAR POSTER ---
               // Kode ini digunakan untuk menumpuk gambar poster film dengan efek bayangan gradasi di atasnya
               Stack(
                 children: [
@@ -159,9 +158,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     // Jarak agar konten tidak terlalu mepet ke gambar atas
                     const SizedBox(height: 15),
 
-                    // ==========================================
-                    // --- ROW: JUDUL FILM & TOMBOL FAVORIT ---
-                    // ==========================================
                     // Kode ini digunakan untuk menempatkan judul film dan ikon hati (favorit) agar bersebelahan
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,10 +196,10 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                 // Kode ini digunakan untuk mengubah tampilan ikon dan warna tergantung apakah film ada di daftar favorit
                                 Icon(
                                   favoriteMovies.contains(widget.movie)
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
+                                      ? Icons.star
+                                      : Icons.star_border,
                                   color: favoriteMovies.contains(widget.movie)
-                                      ? Colors.redAccent
+                                      ? Colors.yellowAccent
                                       : Colors.white54,
                                   size: 32,
                                 ),
@@ -212,7 +208,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                   "Favorite",
                                   style: TextStyle(
                                     color: favoriteMovies.contains(widget.movie)
-                                        ? Colors.redAccent
+                                        ? Colors.yellowAccent
                                         : Colors.white54,
                                     fontSize: 12,
                                     fontWeight: favoriteMovies.contains(widget.movie) 
@@ -226,7 +222,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         ),
                       ],
                     ),
-                    // ==========================================
                     
                     const SizedBox(height: 15),
 

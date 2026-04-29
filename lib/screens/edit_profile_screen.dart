@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/gradient_background.dart'; 
 
+// Kode ini digunakan untuk membuat halaman edit profil yang bersifat dinamis (StatefulWidget)
 class EditProfileScreen extends StatefulWidget {
+  // Kode ini digunakan untuk menerima data profil pengguna saat ini beserta fungsi penyimpanannya dari halaman sebelumnya
   final String currentFirstName;
   final String currentLastName;
   final String currentEmail;
@@ -22,6 +24,7 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  // Kode ini digunakan untuk membuat controller yang akan menangani perubahan teks pada masing-masing kolom input
   late TextEditingController _firstNameController;
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
@@ -30,6 +33,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
+    // Kode ini digunakan untuk mengisi nilai awal pada kolom teks sesuai dengan data profil pengguna yang sudah ada
     _firstNameController = TextEditingController(text: widget.currentFirstName);
     _lastNameController = TextEditingController(text: widget.currentLastName);
     _emailController = TextEditingController(text: widget.currentEmail);
@@ -38,6 +42,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void dispose() {
+    // Kode ini digunakan untuk membersihkan memory controller ketika halaman ditutup untuk mencegah kebocoran memory (memory leak)
     _firstNameController.dispose();
     _lastNameController.dispose();
     _emailController.dispose();
@@ -47,38 +52,51 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Kode ini digunakan untuk membuat struktur dasar halaman edit profil
     return Scaffold(
       backgroundColor: Colors.transparent, 
+      // Kode ini digunakan agar latar belakang gradasi menyatu hingga menembus bagian belakang AppBar
       extendBodyBehindAppBar: true, 
+      
+      // Kode ini digunakan untuk membuat bilah navigasi atas (AppBar) yang transparan
       appBar: AppBar(
         title: const Text("Edit Profil", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)), 
         backgroundColor: Colors.transparent, 
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white), 
       ),
+      
+      // Kode ini digunakan untuk menerapkan latar belakang warna gradasi
       body: GradientBackground(
+        // Kode ini digunakan untuk memastikan konten aman dan tidak tertutup oleh status bar atau poni layar (notch)
         child: SafeArea(
+          // Kode ini digunakan untuk membungkus form agar bisa di-scroll ketika keyboard muncul menutupi layar
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(20.0),
+            // Kode ini digunakan untuk menyusun elemen-elemen form secara vertikal (atas ke bawah)
             child: Column(
               children: [
+                // Kode ini digunakan untuk membuat bingkai lingkaran berwarna biru di luar foto profil
                 Container(
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.blueAccent, width: 2),
                   ),
+                  // Kode ini digunakan untuk menampilkan foto profil (sementara menggunakan gambar placeholder)
                   child: const CircleAvatar(
                     radius: 50,
                     backgroundImage: NetworkImage('https://via.placeholder.com/150'),
                   ),
                 ),
+                // Kode ini digunakan untuk membuat tombol teks yang nantinya bisa difungsikan untuk mengganti foto profil
                 TextButton(
                   onPressed: () {}, 
                   child: const Text("Ganti Foto Profil", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold))
                 ),
                 const SizedBox(height: 20),
 
+                // Kode ini digunakan untuk membuat kolom input teks untuk mengubah Nama Awal
                 _buildTextField(
                   controller: _firstNameController,
                   label: "Nama Awal",
@@ -86,6 +104,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 const SizedBox(height: 15),
                 
+                // Kode ini digunakan untuk membuat kolom input teks untuk mengubah Nama Akhir
                 _buildTextField(
                   controller: _lastNameController,
                   label: "Nama Akhir",
@@ -93,6 +112,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 const SizedBox(height: 15),
                 
+                // Kode ini digunakan untuk membuat kolom input untuk mengubah Email dengan format keyboard khusus email
                 _buildTextField(
                   controller: _emailController,
                   label: "Email",
@@ -101,6 +121,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 const SizedBox(height: 15),
                 
+                // Kode ini digunakan untuk membuat kolom input untuk mengubah Password dengan karakter yang disembunyikan
                 _buildTextField(
                   controller: _passwordController,
                   label: "Password",
@@ -108,22 +129,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   isPassword: true,
                 ),
                 const SizedBox(height: 40),
+                
+                // Kode ini digunakan untuk mengatur agar tombol ambil panjang layar secara penuh (full width)
                 SizedBox(
                   width: double.infinity,
                   height: 50,
+                  // Kode ini digunakan untuk membuat tombol eksekusi penyimpanan profil berwarna biru
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: () {
+                      // Kode ini digunakan untuk mengirim teks terbaru dari form kembali ke halaman utama lewat fungsi onSave
                       widget.onSave(
                         _firstNameController.text,
                         _lastNameController.text,
                         _emailController.text,
                         _passwordController.text,
                       );
+                      
+                      // Kode ini digunakan untuk menutup halaman edit profil dan kembali ke halaman profil
                       Navigator.pop(context); 
+                      
+                      // Kode ini digunakan untuk memunculkan pesan pop-up singkat (notifikasi hijau) setelah profil berhasil diperbarui
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Profil berhasil diperbarui!', style: TextStyle(color: Colors.white)),
@@ -142,6 +171,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
+  // Kode ini digunakan sebagai fungsi pembantu (helper) untuk mendesain kolom input secara seragam agar kodenya tidak ditulis berulang-ulang
   Widget _buildTextField({
     required TextEditingController controller,
     required String label,
@@ -151,9 +181,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }) {
     return TextField(
       controller: controller,
+      // Kode ini digunakan untuk menyembunyikan teks masukan menjadi titik-titik jika kolom tersebut adalah kolom password
       obscureText: isPassword,
+      // Kode ini digunakan untuk memunculkan keyboard dengan simbol '@' jika kolom tersebut adalah kolom email
       keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
       style: const TextStyle(color: Colors.white), 
+      // Kode ini digunakan untuk mengatur gaya visual kolom input seperti teks label, ikon, warna latar, dan garis batas
       decoration: InputDecoration(
         labelText: label, 
         labelStyle: const TextStyle(color: Colors.white54), 

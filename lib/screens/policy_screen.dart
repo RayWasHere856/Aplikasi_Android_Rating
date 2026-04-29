@@ -68,7 +68,7 @@ class PolicyScreen extends StatelessWidget {
                         children: [
                           _buildPoint(
                             'KELOMPOK TRYHARD',
-                            'Aplikasi ini di dirikan ooleh 5 orang yang berasal dari kelas TI-A pagi.',
+                            'Aplikasi ini di dirikan oleh 5 orang yang berasal dari kelas TI-A pagi.',
                           ),
                           _buildPoint(
                             'TRAILER YOUTUBE',

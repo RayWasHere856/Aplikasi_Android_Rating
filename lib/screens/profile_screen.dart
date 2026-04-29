@@ -5,7 +5,9 @@ import 'edit_profile_screen.dart';
 import 'login_screen.dart';
 import '../widgets/gradient_background.dart';
 
+// Kode ini digunakan untuk membuat halaman profil pengguna yang bersifat statis (StatelessWidget)
 class ProfileScreen extends StatelessWidget {
+  // Kode ini digunakan untuk menerima data profil pengguna dan fungsi pembaruan profil dari halaman utama
   final String firstName;
   final String lastName;
   final String email;
@@ -23,11 +25,15 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Kode ini digunakan untuk menggabungkan nama depan dan nama belakang menjadi satu teks utuh
     String fullName = "$firstName $lastName".trim();
 
     return Scaffold(
       backgroundColor: Colors.transparent,
+      // Kode ini digunakan agar latar belakang gradasi menyatu hingga menembus bagian belakang AppBar
       extendBodyBehindAppBar: true,
+      
+      // Kode ini digunakan untuk membuat bilah navigasi atas (AppBar) transparan dengan judul "Profil Saya"
       appBar: AppBar(
         title: const Text(
           "Profil Saya",
@@ -36,21 +42,28 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
+      
+      // Kode ini digunakan untuk menerapkan widget latar belakang gradasi khusus pada keseluruhan halaman
       body: GradientBackground(
+        // Kode ini digunakan untuk menjaga konten agar tidak menabrak area notch atau status bar di atas layar
         child: SafeArea(
           child: Column(
             children: [
               const SizedBox(height: 20),
+              
+              // Kode ini digunakan untuk membungkus area bagian atas profil (foto, nama, dan email)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
+                    // Kode ini digunakan untuk membuat bingkai lingkaran berwarna biru di luar foto profil
                     Container(
                       padding: const EdgeInsets.all(3),
                       decoration: const BoxDecoration(
                         color: Colors.blueAccent,
                         shape: BoxShape.circle,
                       ),
+                      // Kode ini digunakan untuk menampilkan foto profil (sementara menggunakan gambar placeholder internet)
                       child: const CircleAvatar(
                         radius: 40,
                         backgroundImage: NetworkImage(
@@ -59,10 +72,13 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 20),
+                    
+                    // Kode ini digunakan agar kolom teks mengambil sisa ruang kosong di baris tersebut
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Kode ini digunakan untuk menampilkan nama lengkap pengguna
                           Text(
                             fullName,
                             style: const TextStyle(
@@ -72,6 +88,8 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 5),
+                          
+                          // Kode ini digunakan untuk menampilkan alamat email pengguna
                           Text(
                             email,
                             style: const TextStyle(
@@ -87,7 +105,9 @@ class ProfileScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
 
+              // Kode ini digunakan agar daftar menu mengambil semua sisa ruang kosong di bagian bawah layar
               Expanded(
+                // Kode ini digunakan untuk membuat wadah daftar menu dengan sudut melengkung di bagian atasnya
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 15,
@@ -101,8 +121,11 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     border: Border.all(color: Colors.white10, width: 1),
                   ),
+                  
+                  // Kode ini digunakan untuk menyusun tombol-tombol menu profil dalam bentuk daftar vertikal
                   child: ListView(
                     children: [
+                      // Kode ini digunakan untuk membuat tombol menu yang akan mengarahkan pengguna ke halaman "About Us"
                       _buildMenuItem(
                         context,
                         Icons.info_outline,
@@ -116,6 +139,8 @@ class ProfileScreen extends StatelessWidget {
                           );
                         },
                       ),
+                      
+                      // Kode ini digunakan untuk membuat tombol menu yang mengarahkan ke halaman "Kebijakan Pengguna"
                       _buildMenuItem(
                         context,
                         Icons.privacy_tip_outlined,
@@ -129,6 +154,8 @@ class ProfileScreen extends StatelessWidget {
                           );
                         },
                       ),
+                      
+                      // Kode ini digunakan untuk membuat tombol menu yang akan mengarahkan ke halaman "Edit Profile" dan mengirimkan data pengguna saat ini
                       _buildMenuItem(
                         context,
                         Icons.settings_outlined,
@@ -142,21 +169,26 @@ class ProfileScreen extends StatelessWidget {
                                 currentLastName: lastName,
                                 currentEmail: email,
                                 currentPassword: password,
-                                onSave: onProfileChanged,
+                                onSave: onProfileChanged, // Fungsi ini dikirim agar EditProfileScreen bisa mengubah data profil
                               ),
                             ),
                           );
                         },
                       ),
+                      
+                      // Kode ini digunakan untuk membuat garis batas pemisah transparan sebelum tombol Sign Out
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Divider(color: Colors.white24),
                       ),
+                      
+                      // Kode ini digunakan untuk membuat tombol "Sign Out" berwarna merah yang akan mengembalikan pengguna ke halaman LoginScreen
                       _buildMenuItem(
                         context,
                         Icons.logout,
                         "Sign Out",
                         () {
+                          // Kode ini digunakan untuk berpindah ke layar login dan menghapus seluruh riwayat layar sebelumnya agar tidak bisa kembali dengan tombol "Back"
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
@@ -179,6 +211,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
+  // Kode ini digunakan untuk mendefinisikan rancangan khusus (widget builder) yang seragam untuk setiap baris menu di atas
   Widget _buildMenuItem(
     BuildContext context,
     IconData icon,
@@ -187,7 +220,9 @@ class ProfileScreen extends StatelessWidget {
     Color? color,
     Color? textColor,
   }) {
+    // Kode ini digunakan untuk merangkai ikon, teks judul, dan tombol arah panah ke dalam bentuk baris interaktif (ListTile)
     return ListTile(
+      // Kode ini digunakan untuk menampilkan ikon di sisi kiri list dengan kotak bingkai agak transparan
       leading: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -196,6 +231,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: Icon(icon, color: color ?? Colors.blueAccent),
       ),
+      // Kode ini digunakan untuk menampilkan nama menu
       title: Text(
         title,
         style: TextStyle(
@@ -203,11 +239,13 @@ class ProfileScreen extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
+      // Kode ini digunakan untuk meletakkan ikon panah kecil di ujung kanan sebagai penanda bahwa menu bisa ditekan
       trailing: const Icon(
         Icons.arrow_forward_ios,
         size: 16,
         color: Colors.white54,
       ),
+      // Kode ini digunakan untuk memicu aksi/perintah (navigasi) saat baris menu ditekan
       onTap: onTap,
     );
   }

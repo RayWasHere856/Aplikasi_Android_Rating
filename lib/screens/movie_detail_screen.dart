@@ -24,7 +24,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   int _likes = 142;
   int _neutrals = 35;
   int _dislikes = 8;
-  
+
   // Kode ini digunakan untuk melacak tombol reaksi mana yang sedang aktif dipilih pengguna
   String _selectedReaction = "";
 
@@ -44,7 +44,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     super.initState();
     // Kode ini digunakan untuk mengubah URL video YouTube biasa menjadi ID unik yang dibutuhkan oleh pemutar video
     final videoId = YoutubePlayer.convertUrlToId(widget.movie.trailerUrl);
-    
+
     // Kode ini digunakan untuk menginisialisasi pengaturan awal pemutar video YouTube (tidak otomatis berputar, tidak bisu)
     _youtubeController = YoutubePlayerController(
       initialVideoId: videoId ?? '',
@@ -60,18 +60,86 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     super.dispose();
   }
 
-  // Kode ini digunakan untuk memproses pengiriman komentar baru
-  void _addComment() {
-    // Kode ini digunakan untuk memastikan komentar tidak kosong sebelum ditambahkan
-    if (_commentController.text.trim().isNotEmpty) {
+  // Kode ini digunakan untuk memproses pengiriman komentar baru dengan simulasi Async dan Exception (Filter Kata)
+  Future<void> _addComment() async {
+    try {
+      // Ambil teks yang diketik pengguna
+      String inputComment = _commentController.text.trim();
+
+      // Cek apakah komentar kosong
+      if (inputComment.isEmpty) {
+        throw Exception("Komentar tidak boleh kosong!");
+      }
+
+      // 2. Filter kata negatif (mengubah input ke huruf kecil semua agar filternya kebal huruf kapital)
+      if (inputComment.toLowerCase().contains("jelek")) {
+        throw Exception(
+          "Komentar ditolak! Harap gunakan bahasa yang lebih sopan.",
+        );
+      }
+      else if (inputComment.toLowerCase().contains("busuk")) {
+        throw Exception(
+          "Komentar ditolak! Harap gunakan bahasa yang lebih sopan.",
+        );
+      }
+
+      // Sembunyikan keyboard dari layar agar tidak menutupi animasi loading
+      FocusScope.of(context).unfocus();
+
+      // Tampilkan kotak loading (seolah-olah sedang mengunggah komentar ke server)
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(color: Colors.blueAccent),
+        ),
+      );
+
+      // Paksa sistem menunggu 1 detik
+      await Future.delayed(const Duration(seconds: 1));
+
+      // Pastikan halaman belum ditutup oleh pengguna sebelum melanjutkan (aturan standar Flutter)
+      if (!mounted) return;
+
+      // Tutup kotak loading
+      Navigator.pop(context);
+
       setState(() {
-        // Kode ini digunakan untuk memasukkan komentar baru ke posisi paling atas daftar (index 0)
-        comments.insert(0, _commentController.text.trim());
-        // Kode ini digunakan untuk mengosongkan kolom teks setelah komentar terkirim
+        // Masukkan komentar baru ke posisi paling atas daftar (index 0)
+        comments.insert(0, inputComment);
+        // Kosongkan kolom teks agar siap untuk komentar berikutnya
         _commentController.clear();
-        // Kode ini digunakan untuk menyembunyikan keyboard dari layar
-        FocusScope.of(context).unfocus();
       });
+
+      // Tampilkan pesan sukses berwarna hijau
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Komentar berhasil ditambahkan!',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
+        ),
+      );
+    } catch (e) {
+      String errorMessage = "Terjadi kesalahan.";
+      if (e is Exception) {
+        // Buang tulisan "Exception: " bawaan sistem agar terlihat rapi
+        errorMessage = e.toString().replaceAll("Exception: ", "");
+      }
+
+      // Tampilkan pesan peringatan berwarna merah
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            errorMessage,
+            style: const TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.redAccent,
+          duration: const Duration(seconds: 3),
+        ),
+      );
     }
   }
 
@@ -102,7 +170,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
       backgroundColor: Colors.transparent,
       // Kode ini digunakan agar latar belakang gradasi menyatu hingga menembus bagian belakang AppBar
       extendBodyBehindAppBar: true,
-      
+
       // Kode ini digunakan untuk membuat AppBar yang berisi judul film
       appBar: AppBar(
         title: Text(
@@ -116,7 +184,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      
+
       body: GradientBackground(
         // Kode ini digunakan agar seluruh isi layar bisa di-scroll ke bawah
         child: SingleChildScrollView(
@@ -154,7 +222,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
                     // Jarak agar konten tidak terlalu mepet ke gambar atas
                     const SizedBox(height: 15),
 
@@ -174,9 +241,10 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                             ),
                           ),
                         ),
-                        
-                        const SizedBox(width: 10), // Spasi antara judul dan tombol
 
+                        const SizedBox(
+                          width: 10,
+                        ), // Spasi antara judul dan tombol
                         // Tombol Favorit di ujung kanan (diberi Padding Top sedikit)
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
@@ -211,8 +279,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                         ? Colors.yellowAccent
                                         : Colors.white54,
                                     fontSize: 12,
-                                    fontWeight: favoriteMovies.contains(widget.movie) 
-                                        ? FontWeight.bold 
+                                    fontWeight:
+                                        favoriteMovies.contains(widget.movie)
+                                        ? FontWeight.bold
                                         : FontWeight.normal,
                                   ),
                                 ),
@@ -222,7 +291,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         ),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 15),
 
                     // Baris Tanggal, Durasi, dan Rating
@@ -296,7 +365,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
 
                     const SizedBox(height: 25),
-                    
+
                     // Sutradara dan Aktor
                     // Kode ini digunakan untuk menampilkan nama-nama kreator film tersebut
                     Text(
@@ -308,7 +377,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       "Aktor        : ${widget.movie.actors}",
                       style: const TextStyle(color: Colors.white70),
                     ),
-                    
+
                     const SizedBox(height: 25),
 
                     // Sinopsis
@@ -450,7 +519,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       ],
                     ),
                     const SizedBox(height: 25),
-                    
+
                     // Kode ini digunakan untuk memproses seluruh data di daftar 'comments' dan mencetaknya menjadi bentuk kotak-kotak ulasan di layar
                     Column(
                       children: comments.map((comment) {

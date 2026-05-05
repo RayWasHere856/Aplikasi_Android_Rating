@@ -15,13 +15,13 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   // Kode ini digunakan untuk menyimpan teks yang diketik pengguna pada kolom Nama Awal
   final TextEditingController _firstNameController = TextEditingController();
-  
+
   // Kode ini digunakan untuk menyimpan teks masukan pada kolom Nama Akhir
   final TextEditingController _lastNameController = TextEditingController();
-  
+
   // Kode ini digunakan untuk menangkap inputan alamat email pengguna
   final TextEditingController _emailController = TextEditingController();
-  
+
   // Kode ini digunakan untuk menangkap kata sandi yang diketikkan pengguna
   final TextEditingController _passwordController = TextEditingController();
 
@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   // Kode ini digunakan untuk memberikan jarak kosong antara judul dan sub-judul
                   const SizedBox(height: 10),
-                  
+
                   // Kode ini digunakan untuk menampilkan teks instruksi tambahan dengan warna agak pudar (white70)
                   const Text(
                     "Daftar untuk mulai merating film",
@@ -180,22 +180,83 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      // Kode ini digunakan untuk menjalankan aksi (logika) tertentu saat tombol 'Daftar' ditekan
-                      onPressed: () {
-                        // Kode ini digunakan untuk menyimpan nilai "User" sebagai nama bawaan jika kolom Nama Awal dibiarkan kosong
-                        String namaUser = "User";
-                        if (_firstNameController.text.isNotEmpty) {
-                          namaUser = _firstNameController.text;
-                        }
+                      //penambahan kode exception dan async
+                      //  Tambahkan async untuk memulai proses Asynchronous
+                      onPressed: () async {
+                        // 2. Buka blok Try untuk memantau potensi error inputan dari pengguna
+                        try {
+                          if (_firstNameController.text.trim().isEmpty) {
+                            throw Exception("Nama Awal tidak boleh kosong!");
+                          }
+                          if (_emailController.text.trim().isEmpty) {
+                            throw Exception("Email tidak boleh kosong!");
+                          }
+                          if (!_emailController.text.contains("@")) {
+                            throw const FormatException(
+                              "Format email salah! Harus menggunakan karakter '@'.",
+                            );
+                          }
+                          if (_passwordController.text.trim().length < 6) {
+                            throw Exception(
+                              "Password minimal harus 6 karakter!",
+                            );
+                          }
 
-                        // Kode ini digunakan untuk mengarahkan pengguna ke halaman MainWrapper (beranda) sekaligus mengirim data namaUser, dan menghapus layar ini dari riwayat navigasi
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                MainWrapper(userName: namaUser),
-                          ),
-                        );
+                          // Tampilkan kotak loading berputar untuk memblokir layar sementara
+                          showDialog(
+                            context: context,
+                            barrierDismissible:
+                                false, // Tidak bisa ditutup dengan asal klik layar
+                            builder: (context) => const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                          );
+
+                          // Paksa sistem menunggu 2 detik (Simulasi mendaftarkan akun ke server)
+                          await Future.delayed(const Duration(seconds: 2));
+
+                          // Tutup kotak loading
+                          Navigator.pop(context);
+
+                          // Ambil nama pengguna dari kolom Nama Awal
+                          String namaUser = _firstNameController.text.trim();
+
+                          // Pindah ke halaman Beranda secara permanen
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MainWrapper(userName: namaUser),
+                            ),
+                          );
+                        } catch (e) {
+                          // Jika validasi di Fase 1 gagal, eksekusi akan melompat ke sini
+
+                          String errorMessage =
+                              "Terjadi kesalahan saat mendaftar.";
+                          if (e is FormatException) {
+                            errorMessage = e.message;
+                          } else if (e is Exception) {
+                            errorMessage = e.toString().replaceAll(
+                              "Exception: ",
+                              "",
+                            );
+                          }
+
+                          // Tampilkan pesan error berwarna merah di layar bagian bawah
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                errorMessage,
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              backgroundColor: Colors.redAccent,
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
+                        }
                       },
                       child: const Text(
                         "Daftar",

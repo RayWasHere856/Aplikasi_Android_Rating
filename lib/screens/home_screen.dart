@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     // Kode ini digunakan untuk mengisi daftar pencarian awal dengan seluruh film yang ada
     _foundMovies = allMovies;
-    
+
     // Kode ini digunakan untuk membuat banner carousel bergeser otomatis ke halaman berikutnya setiap 5 detik
     _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
       if (_currentPage < 2) {
@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                  
+
                   // Kode ini digunakan untuk membuat kolom input pencarian film
                   TextField(
                     // Kode ini digunakan untuk memicu fungsi penyaringan data setiap kali huruf baru diketik
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  
+
                   // Kode ini digunakan untuk membuat area banner film (carousel) yang dapat digeser
                   SizedBox(
                     height: 180,
@@ -150,8 +150,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         final movie = allMovies[index];
                         return GestureDetector(
+                          //penambahan fitur async
                           // Kode ini digunakan untuk berpindah ke halaman detail film saat gambar banner ditekan
-                          onTap: () {
+                          onTap: () async {
+                            // 2. Tampilkan kotak loading berputar (Simulasi memuat data film dari server)
+                            showDialog(
+                              context: context,
+                              barrierDismissible:
+                                  false, // Mencegah user menutup loading dengan klik sembarangan
+                              builder: (context) => const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.blueAccent,
+                                ),
+                              ),
+                            );
+
+                            // 3. Paksa sistem menunggu 1 detik
+                            await Future.delayed(const Duration(seconds: 1));
+
+                            // 4. Tutup kotak loading
+                            Navigator.pop(context);
+
+                            // 5. Pindah ke halaman detail film
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -199,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  
+
                   // Kode ini digunakan untuk membuat titik-titik indikator halaman persis di bawah banner carousel
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -331,7 +351,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           },
                         )
-                      
                       // Kode ini digunakan untuk menampilkan peringatan ketika film yang dicari pengguna tidak ditemukan
                       : const Padding(
                           padding: EdgeInsets.symmetric(vertical: 40.0),
@@ -356,7 +375,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  
+
                   // Kode ini digunakan untuk membuat katalog seluruh film dalam bentuk grid (tata letak kotak-kotak)
                   GridView.builder(
                     shrinkWrap: true,
@@ -364,11 +383,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Kode ini digunakan untuk mengatur struktur grid menjadi 2 kolom dengan jarak pemisah 10 piksel dan rasio ukuran tertentu
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 0.7,
-                    ),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 0.7,
+                        ),
                     itemCount: allMovies.length,
                     itemBuilder: (context, index) {
                       final movie = allMovies[index];
@@ -387,7 +406,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              image: AssetImage(movie.imageUrl), 
+                              image: AssetImage(movie.imageUrl),
                               fit: BoxFit.cover,
                             ),
                           ),

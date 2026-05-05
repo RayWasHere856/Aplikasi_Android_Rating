@@ -14,9 +14,10 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   // Kode ini digunakan untuk menyimpan teks kata kunci pencarian yang diketik pengguna
   String _searchQuery = "";
-  
+
   // Kode ini digunakan untuk menyimpan kategori genre film yang sedang dipilih (nilai bawaan: "Semua")
   String _selectedGenre = "Semua";
+  bool _isLoading = false;
 
   // Kode ini digunakan untuk mengumpulkan semua genre unik dari daftar film dan menambahkan opsi "Semua" di urutan pertama
   List<String> get _availableGenres {
@@ -49,7 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
       backgroundColor: Colors.transparent,
       // Kode ini digunakan agar latar belakang gradasi warna bisa menembus hingga ke belakang navigasi atas
       extendBodyBehindAppBar: true,
-      
+
       // Kode ini digunakan untuk membuat bilah navigasi atas (AppBar) yang transparan
       appBar: AppBar(
         title: const Text(
@@ -60,7 +61,7 @@ class _SearchScreenState extends State<SearchScreen> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      
+
       // Kode ini digunakan untuk menerapkan warna latar belakang gradasi khusus
       body: GradientBackground(
         // Kode ini digunakan untuk menjaga konten agar aman dari potongan layar HP (notch/status bar)
@@ -79,9 +80,20 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: TextField(
                   style: const TextStyle(color: Colors.white),
                   // Kode ini digunakan untuk memperbarui status pencarian (_searchQuery) setiap kali pengguna mengetik huruf baru
-                  onChanged: (value) {
+                  // Kode ini digunakan untuk memperbarui pencarian dengan simulasi Async (seolah-olah mencari ke server)
+                  onChanged: (value) async {
+                    // 1. Ubah status menjadi "sedang memuat" agar UI menampilkan animasi berputar
+                    setState(() {
+                      _isLoading = true;
+                    });
+
+                    // 2. Tahan proses selama 800 milidetik (simulasi proses pencarian data)
+                    await Future.delayed(const Duration(milliseconds: 800));
+
+                    // 3. Masukkan teks yang diketik ke variabel pencarian, lalu matikan status loading
                     setState(() {
                       _searchQuery = value;
+                      _isLoading = false;
                     });
                   },
                   // Kode ini digunakan untuk mendesain kolom pencarian (ikon, teks bayangan, warna latar, dan lengkungan tepi)
@@ -122,10 +134,22 @@ class _SearchScreenState extends State<SearchScreen> {
                         label: Text(genre),
                         selected: isSelected,
                         // Kode ini digunakan untuk mengubah status genre yang dipilih ketika tombol ditekan
-                        onSelected: (selected) {
+                        // Kode ini digunakan untuk memfilter genre dengan simulasi Async
+                        onSelected: (selected) async {
+                          // 1. Munculkan loading
                           setState(() {
-                            // Jika ditekan ulang, akan kembali ke kategori "Semua"
+                            _isLoading = true;
+                          });
+
+                          // 2. Simulasi delay 800 milidetik
+                          await Future.delayed(
+                            const Duration(milliseconds: 800),
+                          );
+
+                          // 3. Terapkan genre yang dipilih dan matikan loading
+                          setState(() {
                             _selectedGenre = selected ? genre : "Semua";
+                            _isLoading = false;
                           });
                         },
                         selectedColor: Colors.blueAccent,
@@ -155,17 +179,24 @@ class _SearchScreenState extends State<SearchScreen> {
               const SizedBox(height: 10),
 
               // Kode ini digunakan agar daftar film mengambil seluruh sisa ruang kosong di bagian bawah layar
+              // Kode ini digunakan agar daftar film mengambil seluruh sisa ruang kosong di layar
               Expanded(
-                // Kode ini digunakan untuk mengecek jika film yang dicari tidak ada, maka tampilkan teks peringatan
-                child: _filteredMovies.isEmpty
+                // Jika status sedang loading, tampilkan indikator berputar
+                child: _isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.blueAccent,
+                        ),
+                      )
+                    // Jika tidak loading, cek apakah filmnya kosong
+                    : _filteredMovies.isEmpty
                     ? const Center(
                         child: Text(
                           "Film tidak ditemukan",
                           style: TextStyle(color: Colors.white54, fontSize: 16),
-                          
                         ),
                       )
-                    // Kode ini digunakan untuk mencetak daftar kartu film satu per satu secara vertikal berdasarkan hasil pencarian
+                    // Jika filmnya ada, cetak daftar kartu filmnya
                     : ListView.builder(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
@@ -174,7 +205,6 @@ class _SearchScreenState extends State<SearchScreen> {
                         itemCount: _filteredMovies.length,
                         itemBuilder: (context, index) {
                           final movie = _filteredMovies[index];
-                          // Kode ini memanggil fungsi pembantu untuk menggambar desain kartu filmnya
                           return _buildMovieCard(movie, context);
                         },
                       ),
@@ -191,7 +221,24 @@ class _SearchScreenState extends State<SearchScreen> {
     // Kode ini digunakan untuk mendeteksi sentuhan pada kartu film
     return GestureDetector(
       // Kode ini digunakan untuk memindahkan halaman ke MovieDetailScreen saat kartu film diklik
-      onTap: () {
+      // 1. Tambahkan async untuk proses Asynchronous
+      onTap: () async {
+        // 2. Tampilkan kotak loading berputar memblokir layar
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => const Center(
+            child: CircularProgressIndicator(color: Colors.blueAccent),
+          ),
+        );
+
+        // 3. Paksa sistem menunggu 1 detik
+        await Future.delayed(const Duration(seconds: 1));
+
+        // 4. Tutup loading
+        Navigator.pop(context);
+
+        // 5. Pindah halaman
         Navigator.push(
           context,
           MaterialPageRoute(

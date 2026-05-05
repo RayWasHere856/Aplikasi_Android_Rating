@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/gradient_background.dart'; 
+import '../widgets/gradient_background.dart';
 
 // Kode ini digunakan untuk membuat halaman edit profil yang bersifat dinamis (StatefulWidget)
 class EditProfileScreen extends StatefulWidget {
@@ -11,7 +11,7 @@ class EditProfileScreen extends StatefulWidget {
   final Function(String, String, String, String) onSave;
 
   const EditProfileScreen({
-    Key? key, 
+    Key? key,
     required this.currentFirstName,
     required this.currentLastName,
     required this.currentEmail,
@@ -54,18 +54,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     // Kode ini digunakan untuk membuat struktur dasar halaman edit profil
     return Scaffold(
-      backgroundColor: Colors.transparent, 
+      backgroundColor: Colors.transparent,
       // Kode ini digunakan agar latar belakang gradasi menyatu hingga menembus bagian belakang AppBar
-      extendBodyBehindAppBar: true, 
-      
+      extendBodyBehindAppBar: true,
+
       // Kode ini digunakan untuk membuat bilah navigasi atas (AppBar) yang transparan
       appBar: AppBar(
-        title: const Text("Edit Profil", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)), 
-        backgroundColor: Colors.transparent, 
+        title: const Text(
+          "Edit Profil",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white), 
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      
+
       // Kode ini digunakan untuk menerapkan latar belakang warna gradasi
       body: GradientBackground(
         // Kode ini digunakan untuk memastikan konten aman dan tidak tertutup oleh status bar atau poni layar (notch)
@@ -86,13 +89,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   // Kode ini digunakan untuk menampilkan foto profil (sementara menggunakan gambar placeholder)
                   child: const CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                    backgroundImage: NetworkImage(
+                      'https://via.placeholder.com/150',
+                    ),
                   ),
                 ),
                 // Kode ini digunakan untuk membuat tombol teks yang nantinya bisa difungsikan untuk mengganti foto profil
                 TextButton(
-                  onPressed: () {}, 
-                  child: const Text("Ganti Foto Profil", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold))
+                  onPressed: () {},
+                  child: const Text(
+                    "Ganti Foto Profil",
+                    style: TextStyle(
+                      color: Colors.blueAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 20),
 
@@ -103,7 +114,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   icon: Icons.person,
                 ),
                 const SizedBox(height: 15),
-                
+
                 // Kode ini digunakan untuk membuat kolom input teks untuk mengubah Nama Akhir
                 _buildTextField(
                   controller: _lastNameController,
@@ -111,7 +122,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   icon: Icons.person_outline,
                 ),
                 const SizedBox(height: 15),
-                
+
                 // Kode ini digunakan untuk membuat kolom input untuk mengubah Email dengan format keyboard khusus email
                 _buildTextField(
                   controller: _emailController,
@@ -120,7 +131,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   isEmail: true,
                 ),
                 const SizedBox(height: 15),
-                
+
                 // Kode ini digunakan untuk membuat kolom input untuk mengubah Password dengan karakter yang disembunyikan
                 _buildTextField(
                   controller: _passwordController,
@@ -129,7 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   isPassword: true,
                 ),
                 const SizedBox(height: 40),
-                
+
                 // Kode ini digunakan untuk mengatur agar tombol ambil panjang layar secara penuh (full width)
                 SizedBox(
                   width: double.infinity,
@@ -138,29 +149,103 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    onPressed: () {
-                      // Kode ini digunakan untuk mengirim teks terbaru dari form kembali ke halaman utama lewat fungsi onSave
-                      widget.onSave(
-                        _firstNameController.text,
-                        _lastNameController.text,
-                        _emailController.text,
-                        _passwordController.text,
-                      );
-                      
-                      // Kode ini digunakan untuk menutup halaman edit profil dan kembali ke halaman profil
-                      Navigator.pop(context); 
-                      
-                      // Kode ini digunakan untuk memunculkan pesan pop-up singkat (notifikasi hijau) setelah profil berhasil diperbarui
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Profil berhasil diperbarui!', style: TextStyle(color: Colors.white)),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
+                    //penambahan code untuk async dan exception handling
+                    onPressed: () async {
+                      // Buka blok Try untuk memantau error
+                      try {
+                        if (_firstNameController.text.trim().isEmpty) {
+                          throw Exception("Nama Awal tidak boleh kosong!");
+                        }
+                        if (_emailController.text.trim().isEmpty) {
+                          throw Exception("Email tidak boleh kosong!");
+                        }
+                        if (!_emailController.text.contains("@")) {
+                          throw const FormatException(
+                            "Format email tidak valid (wajib menggunakan '@')!",
+                          );
+                        }
+                        if (_passwordController.text.trim().length < 6) {
+                          throw Exception("Password minimal harus 6 karakter!");
+                        }
+                        // Munculkan kotak loading berputar
+                        showDialog(
+                          context: context,
+                          barrierDismissible:
+                              false, // Mencegah user menutup loading dengan klik sembarangan
+                          builder: (context) => const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                        );
+
+                        // Paksa sistem menunggu 1,5 detik
+                        await Future.delayed(
+                          const Duration(milliseconds: 1500),
+                        );
+
+                        // Tutup kotak loading
+                        Navigator.pop(context);
+
+                        widget.onSave(
+                          _firstNameController.text.trim(),
+                          _lastNameController.text.trim(),
+                          _emailController.text.trim(),
+                          _passwordController.text.trim(),
+                        );
+
+                        // Tutup halaman Edit Profil
+                        Navigator.pop(context);
+
+                        // Tampilkan pesan sukses hijau
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Profil berhasil diperbarui!',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } catch (e) {
+                        // Jika ada data tidak lolos validasi, kodenya akan melompat ke sini
+
+                        String errorMessage = "Terjadi kesalahan.";
+                        if (e is FormatException) {
+                          errorMessage =
+                              e.message; // Ambil pesan dari FormatException
+                        } else if (e is Exception) {
+                          errorMessage = e.toString().replaceAll(
+                            "Exception: ",
+                            "",
+                          ); // Ambil pesan dari Exception biasa
+                        }
+
+                        // Tampilkan pesan error merah
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              errorMessage,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.redAccent,
+                            duration: const Duration(seconds: 3),
+                          ),
+                        );
+                      }
                     },
-                    child: const Text("Simpan Perubahan", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                    child: const Text(
+                      "Simpan Perubahan",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -185,21 +270,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       obscureText: isPassword,
       // Kode ini digunakan untuk memunculkan keyboard dengan simbol '@' jika kolom tersebut adalah kolom email
       keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
-      style: const TextStyle(color: Colors.white), 
+      style: const TextStyle(color: Colors.white),
       // Kode ini digunakan untuk mengatur gaya visual kolom input seperti teks label, ikon, warna latar, dan garis batas
       decoration: InputDecoration(
-        labelText: label, 
-        labelStyle: const TextStyle(color: Colors.white54), 
-        prefixIcon: Icon(icon, color: Colors.white54), 
+        labelText: label,
+        labelStyle: const TextStyle(color: Colors.white54),
+        prefixIcon: Icon(icon, color: Colors.white54),
         filled: true,
         fillColor: Colors.white.withOpacity(0.05),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.white10), 
+          borderSide: const BorderSide(color: Colors.white10),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.blueAccent), 
+          borderSide: const BorderSide(color: Colors.blueAccent),
         ),
       ),
     );

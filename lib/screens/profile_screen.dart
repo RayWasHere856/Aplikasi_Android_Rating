@@ -32,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.transparent,
       // Kode ini digunakan agar latar belakang gradasi menyatu hingga menembus bagian belakang AppBar
       extendBodyBehindAppBar: true,
-      
+
       // Kode ini digunakan untuk membuat bilah navigasi atas (AppBar) transparan dengan judul "Profil Saya"
       appBar: AppBar(
         title: const Text(
@@ -42,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      
+
       // Kode ini digunakan untuk menerapkan widget latar belakang gradasi khusus pada keseluruhan halaman
       body: GradientBackground(
         // Kode ini digunakan untuk menjaga konten agar tidak menabrak area notch atau status bar di atas layar
@@ -50,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 20),
-              
+
               // Kode ini digunakan untuk membungkus area bagian atas profil (foto, nama, dan email)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -72,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 20),
-                    
+
                     // Kode ini digunakan agar kolom teks mengambil sisa ruang kosong di baris tersebut
                     Expanded(
                       child: Column(
@@ -88,7 +88,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          
+
                           // Kode ini digunakan untuk menampilkan alamat email pengguna
                           Text(
                             email,
@@ -121,7 +121,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     border: Border.all(color: Colors.white10, width: 1),
                   ),
-                  
+
                   // Kode ini digunakan untuk menyusun tombol-tombol menu profil dalam bentuk daftar vertikal
                   child: ListView(
                     children: [
@@ -139,7 +139,7 @@ class ProfileScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      
+
                       // Kode ini digunakan untuk membuat tombol menu yang mengarahkan ke halaman "Kebijakan Pengguna"
                       _buildMenuItem(
                         context,
@@ -154,7 +154,7 @@ class ProfileScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      
+
                       // Kode ini digunakan untuk membuat tombol menu yang akan mengarahkan ke halaman "Edit Profile" dan mengirimkan data pengguna saat ini
                       _buildMenuItem(
                         context,
@@ -169,26 +169,51 @@ class ProfileScreen extends StatelessWidget {
                                 currentLastName: lastName,
                                 currentEmail: email,
                                 currentPassword: password,
-                                onSave: onProfileChanged, // Fungsi ini dikirim agar EditProfileScreen bisa mengubah data profil
+                                onSave:
+                                    onProfileChanged, // Fungsi ini dikirim agar EditProfileScreen bisa mengubah data profil
                               ),
                             ),
                           );
                         },
                       ),
-                      
+
                       // Kode ini digunakan untuk membuat garis batas pemisah transparan sebelum tombol Sign Out
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Divider(color: Colors.white24),
                       ),
-                      
+
                       // Kode ini digunakan untuk membuat tombol "Sign Out" berwarna merah yang akan mengembalikan pengguna ke halaman LoginScreen
                       _buildMenuItem(
                         context,
                         Icons.logout,
                         "Sign Out",
-                        () {
-                          // Kode ini digunakan untuk berpindah ke layar login dan menghapus seluruh riwayat layar sebelumnya agar tidak bisa kembali dengan tombol "Back"
+                        () async {
+                          // 2. Munculkan dialog loading yang memblokir layar utama
+                          showDialog(
+                            context: context,
+                            barrierDismissible:
+                                false, // Mencegah user membatalkan proses dengan mengeklik luar kotak
+                            builder: (context) => const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.redAccent,
+                              ),
+                            ),
+                          );
+
+                          // 3. Paksa sistem menunggu 1,5 detik (Simulasi menghapus token sesi dan cache lokal)
+                          await Future.delayed(
+                            const Duration(milliseconds: 1500),
+                          );
+
+                          // 4. Pastikan konteks UI masih valid sebelum melakukan navigasi
+                          if (!context.mounted) return;
+
+                          // 5. Tutup dialog loading
+                          Navigator.pop(context);
+
+                          // 6. Lakukan navigasi paksa ke halaman LoginScreen dan hancurkan seluruh riwayat navigasi sebelumnya
+                          // Ini penting agar user tidak bisa kembali ke profil dengan menekan tombol "Back" di HP
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
